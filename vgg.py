@@ -160,7 +160,7 @@ if __name__ == '__main__':
     )
 
     # Make predictions
-    predictions_valid = model.predict_generator(validation_generator, batch_size=batch_size, verbose=1)
+    predictions_valid = model.predict_generator(validation_generator, verbose=1)
     print(predictions_valid);
 
 

@@ -56,7 +56,7 @@ dir_files = glob.glob(_dir + '*.jpg')
 for _file in dir_files:
     file_path = _file
 
-    img = image.load_img(file_path, target_size=(img_width, img_height), grayscale=True)
+    img = image.load_img(file_path, target_size=(img_width, img_height))
     # img = img.convert('L')
 
     x = image.img_to_array(img)

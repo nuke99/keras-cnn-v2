@@ -19,7 +19,7 @@ from keras_vggface import utils
 import glob
 import numpy as np
 from keras.engine import  Model
-
+from keras.layers import Input, Layer
 
 img_width, img_height = 95, 95
 names = {
@@ -31,8 +31,11 @@ names = {
 nb_class = 4
 hidden_dim = 512
 
+
+
 # model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
-vgg_model = VGGFace(input_shape=(img_width, img_height, 3))
+i = Input(input=(img_width,img_height,3));
+vgg_model = VGGFace()(i)
 last_layer = vgg_model.get_layer('pool5').output
 x = Flatten(name='flatten')(last_layer)
 x = Dense(hidden_dim, activation='relu', name='fc6')(x)

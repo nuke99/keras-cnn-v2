@@ -40,7 +40,16 @@ if len(sys.argv) < 3:
 _model =  sys.argv[2]
 _dir =  sys.argv[1]
 
-model_name = _model
+model_name = _modelnb_class = 2
+hidden_dim = 512
+
+vgg_model = VGGFace(include_top=False, input_shape=(224, 224, 3))
+last_layer = vgg_model.get_layer('pool5').output
+x = Flatten(name='flatten')(last_layer)
+x = Dense(hidden_dim, activation='relu', name='fc6')(x)
+x = Dense(hidden_dim, activation='relu', name='fc7')(x)
+out = Dense(nb_class, activation='softmax', name='fc8')(x)
+custom_vgg_model = Model(vgg_model.input, out)
 
 # load the model we saved
 # model = load_model('./models/1516228873.3_fixedepos_model.h5')

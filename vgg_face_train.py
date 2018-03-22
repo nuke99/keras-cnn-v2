@@ -40,6 +40,10 @@ x = Dense(hidden_dim, activation='relu', name='fc7')(x)
 out = Dense(nb_class, activation='softmax', name='fc8')(x)
 model = Model(vgg_model.input, out)
 
+optimizer = keras.optimizers.Adam(lr=learning_rate)
+
+model.compile(loss='categorical_crossentropy', optimizer=optimizer,metrics=['accuracy'])
+
 train_datagen = ImageDataGenerator(
     rescale=1. / 255,
     shear_range=0.2,

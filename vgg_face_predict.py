@@ -20,7 +20,7 @@ import glob
 import numpy as np
 
 
-img_width, img_height = 150, 150
+img_width, img_height = 95, 95
 names = {
     0 : 'Chris_patt',
     1 : 'Dwayne_Johnson',
@@ -44,7 +44,7 @@ dir_files = glob.glob(_dir+'*.jpg')
 
 for _file in dir_files:
     file_path = _file
-    img = image.load_img(file_path, target_size=(img_width, img_height),grayscale=True)
+    img = image.load_img(file_path, target_size=(img_width, img_height))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     x = utils.preprocess_input(x, version=1)  # or version=2

@@ -80,6 +80,7 @@ for _file in dir_files:
     print(preds.shape)
     results = []
     for pred in preds:
+        print(_file)
         print(pred.argsort())
 
 

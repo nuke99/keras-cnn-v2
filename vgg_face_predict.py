@@ -35,7 +35,7 @@ nb_class = 4
 hidden_dim = 512
 
 
-_model_file = './models/vgg-face.json1';
+_model_file = './models/vgg-face1.json';
 infile = open(_model_file)
 model = keras.models.model_from_json(json.load(infile))
 model.load_weights('./models/vgg-face1.h5')

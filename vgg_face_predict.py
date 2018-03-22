@@ -74,10 +74,10 @@ for _file in dir_files:
     print( "----------------"   )
     preds = model.predict(x)
     print(preds)
-    predclass = model.predict_classes(x);
-    print(predclass)
-    print('file %s pred %s',_file, names[predclass[0]])
-
+    # predclass = model.predict_classes(x);
+    # print(predclass)
+    # print('file %s pred %s',_file, names[predclass[0]])
+    print(preds.shape)
     print( "---------------" )
     # print('Predicted:', utils.decode_predictions(preds))
 

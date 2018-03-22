@@ -32,7 +32,7 @@ nb_class = 4
 hidden_dim = 512
 
 # model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
-vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3))
+vgg_model = VGGFace(input_shape=(img_width, img_height, 3))
 last_layer = vgg_model.get_layer('pool5').output
 x = Flatten(name='flatten')(last_layer)
 x = Dense(hidden_dim, activation='relu', name='fc6')(x)

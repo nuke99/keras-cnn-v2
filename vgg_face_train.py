@@ -17,6 +17,10 @@ import os
 import cv2
 
 
+from tensorflow.python.client import device_lib
+
+print(device_lib.list_local_devices())
+
 train_data_dir = './dataset/training'
 validation_data_dir = './dataset/testing'
 validation_steps = 10

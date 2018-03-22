@@ -32,7 +32,7 @@ batch_size =  32
 nb_class = 4
 hidden_dim = 512
 
-vgg_model = VGGFace(include_top=False, input_shape=(224, 224, 3))
+vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3))
 last_layer = vgg_model.get_layer('pool5').output
 x = Flatten(name='flatten')(last_layer)
 x = Dense(hidden_dim, activation='relu', name='fc6')(x)

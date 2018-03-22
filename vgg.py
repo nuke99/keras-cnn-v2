@@ -4,6 +4,7 @@ from keras.layers import Input, Dense, Convolution2D, MaxPooling2D, AveragePooli
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import log_loss
 from keras.callbacks import TensorBoard
+import json
 
 
 # from load_cifar10 import load_cifar10_data
@@ -161,7 +162,14 @@ if __name__ == '__main__':
     # Make predictions
     predictions_valid = model.predict_generator(validation_generator, batch_size=batch_size, verbose=1)
     print(predictions_valid);
+
+
     model.save_weights('./models/vgg-1.h5')
+
+    outfile = open('./models/vgg-1_convnet_model.json',
+                   'w')  # of course you can specify your own file locations
+    json.dump(model.to_json(), outfile)
+    outfile.close()
 
     # Cross-entropy loss score
     # score = log_loss(Y_valid, predictions_valid)

@@ -21,6 +21,9 @@ import numpy as np
 from keras.engine import  Model
 from keras.layers import Input, Layer
 
+keras.backend.set_image_data_format('channels_last');
+
+
 img_width, img_height = 95, 95
 names = {
     0 : 'Chris_patt',
@@ -32,16 +35,18 @@ nb_class = 4
 hidden_dim = 512
 
 
+_model_file = './models/vgg-face.json';
+infile = open(_model_file)
+model = keras.models.model_from_json(json.load(infile))
 
 # model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
-i = Input(input=(img_width,img_height,3));
-vgg_model = VGGFace()(i)
-last_layer = vgg_model.get_layer('pool5').output
-x = Flatten(name='flatten')(last_layer)
-x = Dense(hidden_dim, activation='relu', name='fc6')(x)
-x = Dense(hidden_dim, activation='relu', name='fc7')(x)
-out = Dense(nb_class, activation='softmax', name='fc8')(x)
-model = Model(vgg_model.input, out)
+# vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height,3), classes=4)
+# last_layer = vgg_model.get_layer('pool5').output
+# x = Flatten(name='flatten')(last_layer)
+# x = Dense(hidden_dim, activation='relu', name='fc6')(x)
+# x = Dense(hidden_dim, activation='relu', name='fc7')(x)
+# out = Dense(nb_class, activation='softmax', name='fc8')(x)
+# model = Model(vgg_model.input, out)
 
 
 if len(sys.argv) < 3:

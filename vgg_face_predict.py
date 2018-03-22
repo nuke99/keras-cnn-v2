@@ -18,6 +18,7 @@ from keras_vggface.vggface import VGGFace
 from keras_vggface import utils
 import glob
 import numpy as np
+from keras.engine import  Model
 
 
 img_width, img_height = 95, 95
@@ -27,9 +28,18 @@ names = {
     2 : 'Jeniffer_Lawrance',
     3 : 'Laurence_Fishburne'
 }
+nb_class = 4
+hidden_dim = 512
 
+# model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
+vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3))
+last_layer = vgg_model.get_layer('pool5').output
+x = Flatten(name='flatten')(last_layer)
+x = Dense(hidden_dim, activation='relu', name='fc6')(x)
+x = Dense(hidden_dim, activation='relu', name='fc7')(x)
+out = Dense(nb_class, activation='softmax', name='fc8')(x)
+model = Model(vgg_model.input, out)
 
-model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3)) # default : VGG16 , you can use model='resnet50' or 'senet50'
 
 if len(sys.argv) < 3:
         print('train.py <dir> <modelname>')

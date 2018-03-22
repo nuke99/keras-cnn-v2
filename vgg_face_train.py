@@ -27,16 +27,16 @@ validation_steps = 10
 learning_rate = 0.0001
 
 img_width, img_height = 150, 150
-steps_per_epoch = 26
+steps_per_epoch = 27
 nb_epoch = 40
-batch_size =  32
+batch_size =  10
 
 # vgg_features = VGGFace(include_top=False, input_shape=(img_width, img_height, 3), pooling='avg') # pooling: None, avg or max
 
 nb_class = 4
 hidden_dim = 512
 
-vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3))
+vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 1))
 last_layer = vgg_model.get_layer('pool5').output
 x = Flatten(name='flatten')(last_layer)
 x = Dense(hidden_dim, activation='relu', name='fc6')(x)
@@ -63,7 +63,7 @@ train_generator = train_datagen.flow_from_directory(
     target_size=(img_width, img_height),
     batch_size=batch_size,
     class_mode='categorical',
-    # color_mode='grayscale',
+    color_mode='grayscale',
     seed=7,
 )
 
@@ -72,7 +72,7 @@ validation_generator = test_datagen.flow_from_directory(
     target_size=(img_width, img_height),
     batch_size=batch_size,
     class_mode='categorical',
-    # color_mode='grayscale',
+    color_mode='grayscale',
     seed=7,
 )
 

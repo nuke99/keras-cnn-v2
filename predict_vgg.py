@@ -65,7 +65,7 @@ for _file in dir_files:
     images = np.vstack([x])
 
     classes = model.predict(images)
-    # print classes
+    print classes
 
     p_classes = model.predict_classes(images)
     # print p_classes

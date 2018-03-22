@@ -29,7 +29,7 @@ names = {
 }
 
 
-model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
+model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3)) # default : VGG16 , you can use model='resnet50' or 'senet50'
 
 if len(sys.argv) < 3:
         print('train.py <dir> <modelname>')

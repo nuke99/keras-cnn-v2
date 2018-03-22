@@ -72,5 +72,5 @@ for _file in dir_files:
     x = utils.preprocess_input(x, version=1)  # or version=2
     preds = model.predict(x)
     print(preds)
-    print('Predicted:', utils.decode_predictions(preds))
+    # print('Predicted:', utils.decode_predictions(preds))
 

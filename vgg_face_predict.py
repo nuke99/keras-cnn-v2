@@ -69,8 +69,15 @@ for _file in dir_files:
     img = image.load_img(file_path, target_size=(img_width, img_height))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
+    x = x / 255.0
     x = utils.preprocess_input(x, version=1)  # or version=2
+    print( "----------------"   )
     preds = model.predict(x)
     print(preds)
+    predclass = model.predict_classes(x);
+    print(predclass)
+    print('file %s pred %s',_file, names[predclass[0]])
+
+    print( "---------------" )
     # print('Predicted:', utils.decode_predictions(preds))
 

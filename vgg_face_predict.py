@@ -78,6 +78,11 @@ for _file in dir_files:
     # print(predclass)
     # print('file %s pred %s',_file, names[predclass[0]])
     print(preds.shape)
+    results = []
+    for pred in preds:
+        print(pred.argsort())
+
+
     print( "---------------" )
     # print('Predicted:', utils.decode_predictions(preds))
 

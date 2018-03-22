@@ -5,6 +5,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import log_loss
 from keras.callbacks import TensorBoard
 import json
+import os
+
 
 
 # from load_cifar10 import load_cifar10_data
@@ -173,3 +175,5 @@ if __name__ == '__main__':
 
     # Cross-entropy loss score
     # score = log_loss(Y_valid, predictions_valid)
+
+    os.system("shutdown now -h")

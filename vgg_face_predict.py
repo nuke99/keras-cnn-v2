@@ -50,6 +50,8 @@ model.load_weights('./models/vgg-face.h5')
 # out = Dense(nb_class, activation='softmax', name='fc8')(x)
 # model = Model(vgg_model.input, out)
 
+model = VGGFace(weights='./models/vgg-face.h5',input_shape=(224, 224, 3))
+
 
 if len(sys.argv) < 3:
         print('train.py <dir> <modelname>')

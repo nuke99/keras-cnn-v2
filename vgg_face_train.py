@@ -23,10 +23,10 @@ print(device_lib.list_local_devices())
 
 train_data_dir = './dataset/training'
 validation_data_dir = './dataset/testing'
-validation_steps = 10
-learning_rate = 0.0001
+validation_steps = 20
+learning_rate = 0.0004
 
-img_width, img_height = 150, 150
+img_width, img_height = 95, 95
 steps_per_epoch = 27
 nb_epoch = 40
 batch_size =  10

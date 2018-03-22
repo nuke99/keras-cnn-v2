@@ -24,7 +24,7 @@ print(device_lib.list_local_devices())
 train_data_dir = './dataset/training'
 validation_data_dir = './dataset/testing'
 validation_steps = 20
-learning_rate = 0.0004
+learning_rate = 0.0001
 
 img_width, img_height = 95, 95
 steps_per_epoch = 27
@@ -36,11 +36,12 @@ batch_size =  10
 nb_class = 4
 hidden_dim = 512
 
-vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3))
+vgg_model = VGGFace(include_top=False, input_shape=(img_width, img_height, 3),pooling='max')
 last_layer = vgg_model.get_layer('pool5').output
 x = Flatten(name='flatten')(last_layer)
 x = Dense(hidden_dim, activation='relu', name='fc6')(x)
 x = Dense(hidden_dim, activation='relu', name='fc7')(x)
+x = Dropout(0.5)(x)
 out = Dense(nb_class, activation='softmax', name='fc8')(x)
 model = Model(vgg_model.input, out)
 
@@ -85,8 +86,8 @@ model.fit_generator(
     # callbacks=[tensorboard],
 )
 
-model.save_weights('./models/vgg-face.h5')
-outfile = open('./models/vgg-face.json',
+model.save_weights('./models/vgg-face1.h5')
+outfile = open('./models/vgg-face1.json',
                'w')  # of course you can specify your own file locations
 json.dump(model.to_json(), outfile)
 outfile.close()

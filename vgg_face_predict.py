@@ -35,10 +35,10 @@ nb_class = 4
 hidden_dim = 512
 
 
-_model_file = './models/vgg-face.json';
+_model_file = './models/vgg-face.json1';
 infile = open(_model_file)
 model = keras.models.model_from_json(json.load(infile))
-model.load_weights('./models/vgg-face.h5')
+model.load_weights('./models/vgg-face1.h5')
 
 
 # model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
